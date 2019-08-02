@@ -1,0 +1,161 @@
+{% extends '_page.njk' %}
+
+{% block content %}
+    <div id="user" class="container profile">
+      <div class="row">
+        <div class="col text-center mt-3">
+          <img src="{{ user.photos[0].value if user.photos else 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=' }}" class="picture rounded-circle border shadow"/>
+          <h2 class="mt-3">{{ user.displayName }}</h2>
+          <span id="tenant" class="small text-muted"></span>
+        </div>
+      </div>
+
+      <div class="row mt-2">
+        <div class="col">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+                aria-selected="true">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+                aria-selected="false">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="address-tab" data-toggle="tab" href="#address" role="tab" aria-controls="address"
+                aria-selected="false">Address</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="links-tab" data-toggle="tab" href="#links" role="tab" aria-controls="links"
+                aria-selected="false">Links</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+              <table class="table table-hover table-sm table-properties">
+                <tr>
+                  <th>id</th>
+                  <!--email_off-->
+                  <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 20rem;">{{ user.id }}</td>
+                  <!--/email_off-->
+                </tr>
+{% if user.nickname %}
+                <tr>
+                  <th>nickname</th>
+                  <td>{{ user.nickname }}</td>
+                </tr>
+{% endif %}
+{% if user.preferredUsername %}
+                <tr>
+                  <th>preferred username</th>
+                  <td>{{ user.preferredUsername }}</td>
+                </tr>
+{% endif %}
+{% if user.gender %}
+                <tr>
+                  <th>gender</th>
+                  <td>{{ user.gender }}</td>
+                </tr>
+{% endif %}
+{% if user.birthday %}
+                <tr>
+                  <th>birthday</th>
+                  <td>{{ user.birthday }}</td>
+                </tr>
+{% endif %}
+{% if user.name and user.name.givenName %}
+                <tr>
+                  <th>given name</th>
+                  <td>{{ user.name.givenName }}</td>
+                </tr>
+{% endif %}
+{% if user.name and user.name.middleName %}
+                <tr>
+                  <th>middle name</th>
+                  <td>{{ user.name.middleName }}</td>
+                </tr>
+{% endif %}
+{% if user.name and user.name.familyName %}
+                <tr>
+                  <th>family name</th>
+                  <td>{{ user.name.familyName }}</td>
+                </tr>
+{% endif %}
+              </table>
+            </div>
+
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+              <table class="table table-hover table-sm table-properties">
+                <tr rv-show="user.email">
+{% if user.emails %}
+                  <th>email</th>
+                  <!--email_off-->
+                  <td>{{ user.emails[0].value }}</td>
+                  <!--/email_off-->
+                </tr>
+{% endif %}
+{% if user.phoneNumbers %}
+                <tr>
+                  <th>phone number</th>
+                  <td>{{ user.phoneNumbers[0].value }}</td>
+                </tr>
+{% endif %}
+              </table>
+            </div>
+
+            <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
+              <table class="table table-hover table-sm table-properties">
+{% if user.addresses and user.addresses[0].country %}
+                <tr>
+                  <th>country</th>
+                  <td>{{ user.addresses[0].country }}</td>
+                </tr>
+{% endif %}
+{% if user.addresses and user.addresses[0].postalCode %}
+                <tr>
+                  <th>postal code</th>
+                  <td>{{ user.addresses[0].postalCode }}</td>
+                </tr>
+{% endif %}
+{% if user.addresses and user.addresses[0].locality %}
+                <tr>
+                  <th>locality</th>
+                  <td>{{ user.addresses[0].locality }}</td>
+                </tr>
+{% endif %}
+{% if user.addresses and user.addresses[0].region %}
+                <tr>
+                  <th>region</th>
+                  <td>{{ user.addresses[0].region }}</td>
+                </tr>
+{% endif %}
+{% if user.addresses and user.addresses[0].streetAddress %}
+                <tr>
+                  <th>street address</th>
+                  <td>{{ user.addresses[0].streetAddress }}</td>
+                </tr>
+{% endif %}
+{% if user.addresses and user.addresses[0].formatted %}
+                <tr>
+                  <th>formatted</th>
+                  <td>{{ user.addresses[0].formatted }}</td>
+                </tr>
+{% endif %}
+              </table>
+            </div>
+
+            <div class="tab-pane fade" id="links" role="tabpanel" aria-labelledby="links-tab">
+              <table class="table table-hover table-sm table-properties">
+{% if user.profileUrl%}
+                <tr>
+                  <th>profile</th>
+                  <td><a href="{{user.profileUrl}}">{{ user.profileUrl }}</a></td>
+                </tr>
+{% endif %}
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

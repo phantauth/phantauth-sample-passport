@@ -1,0 +1,26 @@
+{% extends "_page.njk" %}
+
+{% block content %}
+<div class="container">
+  <img src="logo.svg" class="logo">
+  <p>Sample application for <a href="https://www.npmjs.com/package/passport-phantauth">passport-phantauth</a> Passport strategy.</p>
+  <p>
+    PhantAuth is a Random User Generator + OpenID Connect Provider, designed to simplify testing for applications using OpenID Connect authentication by making use of random generated users.
+  </p>
+  <p>For more information about PhantAuth, check <a href="https://www.phantauth.net">PhantAuth Developer Portal</a>.</p>
+
+{% if user %}
+  <div class="alert alert-success">
+    You are logged in as <em>{{ user.username }}</em>. You can view your <a href="/profile">profile</a> or <a href="/logout">logout</a>.
+  </div>
+{% else %}
+  <div class="alert alert-warning">
+    You are not logged in. You can try <a href="/login">login</a>.
+  </div>
+{% endif %}
+
+ <p>The source of this example is available as <a href="https://codesandbox.io/s/github/phantauth/phantauth-sample-passport/tree/production/">Sandbox</a>
+    on CodeSandbox, so it is easy to view, edit and even deploy your version on <a href="https://zeit.co/now">Zeit Now</a>.
+ </p>
+</div>
+{% endblock %}
