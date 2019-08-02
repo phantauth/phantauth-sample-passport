@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block head %}
+  <title>PhantAuth Sample Passport</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <link rel="shortcut icon" href="/favicon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+  <link rel="stylesheet" crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  {% endblock %}
+</head>
+<body>
+  {% block body %}
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <a class="navbar-brand" href="/"><img src="/logo.svg"></img> PhantAuth Sample Passport</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/"><i class="fa fa-fw fa-lg fa-home"></i> Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/phantauth/phantauth-sample-passport"><i class="fa fa-fw fa-lg fa-github"></i> GitHub</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://codesandbox.io/s/github/phantauth/phantauth-sample-passport/tree/production/"><i class="fa fa-fw fa-lg fa-pencil"></i> Edit</a>
+        </li>
+{% if user %}
+        <li class="nav-item">
+          <a class="nav-link" href="/profile"><i class="fa fa-fw fa-lg fa-user"></i> Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout"><i class="fa fa-fw fa-lg fa-sign-out"></i> Logout</a>
+        </li>
+{% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="/login"><i class="fa fa-fw fa-lg fa-sign-in"></i> Login</a>
+        </li>
+{% endif %}
+      </ul>
+    </div>    
+  </nav>
+
+  <div class="container-fluid">
+    {% block content %}
+    {% endblock %}
+  </div>
+  {% endblock %}
+  <script type="text/javascript">
+{% block script %}
+{% endblock %}
+  </script>
+</body>
+</html>

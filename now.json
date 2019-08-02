@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "name": "phantauth-sample-passport",
+  "alias": ["phantauth-sample-passport"],
+  "public": false,
+  "builds": [
+    { "src": "*.svg", "use": "@now/static" },
+    { "src": "*.png", "use": "@now/static" },
+    { "src": "*.njk", "use": "@now/static" },
+    { "src": "*.css", "use": "@now/static" },
+    { "src": "app.js", "use": "@now/node-server" }
+    ],
+  "routes": [
+    {
+    "src": "/([^.^/]*)",
+    "dest": "/app.js"
+    }
+  ]
+}
